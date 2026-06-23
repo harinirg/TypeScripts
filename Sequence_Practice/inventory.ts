@@ -1,13 +1,11 @@
-import promptSync from "prompt-sync";
+import * as fs from "fs";
 
-const prompt = promptSync();
-
-let quantitiesInput: string = prompt("Enter quantities of products (comma-separated): ");
-let pricesInput: string = prompt("Enter prices of products (comma-separated): ");
-let quantities = quantitiesInput.split(",");
-let prices = pricesInput.split(",");
-let totalValue: number = 0;
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+const values = data[8]!.trim().split("|");
+let quantities = values[0]!.split(",");
+let prices = values[1]!.split(",");
+let total = 0;
 for (let i = 0; i < quantities.length; i++) {
-    totalValue += Number(quantities[i]) * Number(prices[i]);
+    total += Number(quantities[i]) * Number(prices[i]);
 }
-console.log("Total value of the inventory: " + totalValue.toFixed(2));
+console.log("Inventory Value: " + total);

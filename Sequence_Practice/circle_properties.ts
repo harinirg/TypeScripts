@@ -1,14 +1,14 @@
-import promptSync from "prompt-sync";
+import * as fs from "fs";
 
-const prompt = promptSync();
-let radius: number = Number(prompt("Enter the radius of the circle: "));
-let angle: number = Number(prompt("Enter the angle in degrees (for sector area): "));
-let diameter: number = 2 * radius;
-let circumference: number = 2 * Math.PI * radius;
-let sectorArea: number = (angle / 360) * Math.PI * radius * radius;
-let arcLength: number = (angle / 360) * circumference;
-console.log("Radius: " + radius);
-console.log("Diameter: " + diameter);
-console.log("Circumference: " + circumference);
-console.log("Sector Area for " + angle + " degrees: " + sectorArea);
-console.log("Arc Length for " + angle + " degrees: " + arcLength);
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+const values = data[4]!.trim().split(",");
+let radius = Number(values[0]);
+let angle = Number(values[1]);
+let diameter = 2 * radius;
+let circumference = 2 * Math.PI * radius;
+let sectorArea = (angle / 360) * Math.PI * radius * radius;
+let arcLength = (angle / 360) * circumference;
+console.log("Diameter:", diameter);
+console.log("Circumference:", circumference);
+console.log("Sector Area:", sectorArea);
+console.log("Arc Length:", arcLength);

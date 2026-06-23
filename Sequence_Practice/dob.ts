@@ -1,7 +1,5 @@
-import promptSync from "prompt-sync";
-
-const prompt = promptSync();
-let birth: number = Number(prompt("Enter your birth year: "));
-let current: number = new Date().getFullYear();
-let age: number = current - birth;
-console.log("Your age is: "+age+ "years");
+import * as fs from "fs";
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+let birthYear = Number(data[6]!.trim());
+let age = new Date().getFullYear() - birthYear;
+console.log("Age: " + age);

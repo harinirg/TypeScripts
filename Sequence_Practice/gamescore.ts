@@ -1,5 +1,3 @@
-import promptSync from "prompt-sync";
-
-const prompt = promptSync();
-let score = prompt("Game Score: ");
-console.log("Your score is " + score + ".");
+import * as fs from "fs";
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+console.log("Game Score: " + data[7]!.trim());

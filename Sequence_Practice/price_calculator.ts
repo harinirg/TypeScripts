@@ -1,16 +1,15 @@
-import promptSync from "prompt-sync";
+import * as fs from "fs";
 
-const prompt = promptSync();
-
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+const values = data[10]!.trim().split(",");
 let totalPrice: number = 0;
 let choice: string = "yes";
-let itemNumber: number = 1;
-
-while (choice.toLowerCase() === "yes") {
-    let price: number = Number(prompt("Enter the price of item "+itemNumber));
-    let quantity: number = Number(prompt("Enter the quantity of item"+ itemNumber));
+let index: number = 0;
+while (choice === "yes") {
+    let price: number = Number(values[index]);
+    let quantity: number = Number(values[index + 1]);
     totalPrice = totalPrice + (price * quantity);
-    choice = prompt("Do you want to enter another item? (yes/no): ");
-    itemNumber++;
+    choice = values[index + 2]!;
+    index = index + 3;
 }
 console.log("Total Price: " + totalPrice);

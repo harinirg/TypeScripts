@@ -1,6 +1,4 @@
-import promptSync from "prompt-sync";
-
-const prompt = promptSync();
-let rating: number = Number(prompt("Average Rating: "));
-let roundrating: number = Math.round(rating);
-console.log("Rounded Rating: " + roundrating);
+import * as fs from "fs";
+const data = fs.readFileSync("input.txt", "utf8").split("\n");
+let rating = Number(data[11]!.trim());
+console.log("Rounded Rating: " + Math.round(rating));
